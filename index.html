@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STAR WARS CATALOG</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Ropa+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>STAR WARS<br>CATALOG </h1>
+    </header>
+    <main>
+        <div class="left">
+            <h2>Characters</h2>
+            <div class="loader hidden"></div>
+            <div class="character"></div>
+            <button onclick="previousPage()" id="next">Previous</button>
+            <button onclick="nextPage()" id="next">Next</button>
+        </div>
+        <div class="right">
+            <h2>Details</h2>
+            <div class="loader-right hidden"></div>
+            <div class="right-container">
+                <div class="character-spec"></div>
+                <!-- Lägg en bokstav inanför <p> taggarna så slutar animationen visas -->
+                <div class="planet-spec"><p></p></div>
+            </div>
+        </div>
+    </main>
+    <script src="main.js"></script>
+</body>
+</html>
+
