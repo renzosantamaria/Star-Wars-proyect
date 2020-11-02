@@ -8,13 +8,13 @@ else if(document.getElementsByClassName("planet-spec")[0].innerText.length > 0){
 // -------------------------------------------------------------------------------------
 
 // GLOBALA VARIABLER------------------------------------------------------------
-let pageNum = 1 // Vi hämtar en character list från den första page som finns i API
+let pageNum = 1 // Vi hämtar en character list från den första page som finns i API:n
 let nombreTest = "Luke Skywalker" //Global funktion som vi använder för att hitta char Index
 
 
 
 //GRUNDEN TILL ATT FÅ FRAM DATA FRÅN ETT API PÅ ETT ASYNCRONT SÄTT------------------
-async function getStarWarsData(page) {//Gjorde om så att funktionene tar emot ett page number variabel som parameter
+async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot ett page-number variabel som parameter
     const req = await fetch (`https://swapi.dev/api/people/?page= + ${page}`) // här blir våran fetch dynamiskt beroende på vilken sida man vill fetcha
     const res = await req.json()
     return res
@@ -44,9 +44,7 @@ async function print() { //Skapar en funktion som enbart printar en lista på ch
     // Vi lägger till en eventlistener här:
       let charInfo = document.querySelectorAll(".character li")
          for (let i = 0; i < charInfo.length; i++) {
-             console.log(charInfo.length)
              charInfo[i].addEventListener("click", function(){
-                 console.log("click")
                  clickOnCharacter(charInfo[i].innerText)
             //  nombreTest = charInfo[i].innerText
              })
@@ -130,7 +128,7 @@ function nextPage() {
     }
     getStarWarsData(pageNum)
     print()
-    console.log(pageNum)
+    document.querySelector("p .current-page").innerHTML = pageNum
  }
         
 
@@ -142,7 +140,7 @@ function nextPage() {
     }
     getStarWarsData(pageNum)
     print()
-    console.log(pageNum)
+    document.querySelector("p .current-page").innerHTML = pageNum
 
 }
 // EVENT LISTENER-------------------------------------------------

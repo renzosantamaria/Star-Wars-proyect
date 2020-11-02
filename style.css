@@ -67,6 +67,12 @@ main{
     
 }
 
+.buttons{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .character-spec,
 .planet-spec{
     height: 220px;
