@@ -58,7 +58,7 @@ main{
 
 .left,
 .right{
-  margin: -40px 4%;
+  margin: -40px 5px;
   height: 520px;
   width: 400px;
   background-color: lightgray;
@@ -284,6 +284,10 @@ p{
       font-size: 38px;
       padding-left: 30px;
   }
+  h2{
+    font-size: 18px;
+    letter-spacing: 3px;
+  }
 
     p{
       letter-spacing: 0.2em;
@@ -292,7 +296,16 @@ p{
       font-size: 12px;
   }
   .character-spec p:nth-child(1){
-      font-size: 18px;
+      font-size: 16px;
       padding: 10px 0px;
+  }
+
+  .left,
+  .right{
+    width: 170px;
+  }
+
+  .right p{
+    font-size: 10px;
   }
 }

@@ -46,7 +46,6 @@ async function print() { //Skapar en funktion som enbart printar en lista på ch
          for (let i = 0; i < charInfo.length; i++) {
              charInfo[i].addEventListener("click", function(){
                  clickOnCharacter(charInfo[i].innerText)
-            //  nombreTest = charInfo[i].innerText
              })
            }
 }
