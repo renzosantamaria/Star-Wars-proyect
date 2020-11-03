@@ -296,7 +296,8 @@ p{
       font-weight: 600;
       font-size: 12px;
   }
-  .character-spec p:nth-child(1){
+  .character-spec p:nth-child(1),
+  .planet-spec p:nth-child(1){
       font-size: 16px;
       padding: 10px 0px;
   }
@@ -311,8 +312,16 @@ p{
   }
 
   .left,
-.right{
-  margin: -40px 5px;
+  .right{
+  margin: -40px 2%;
  
-}
+  }
+  header{
+    height: 280px;
+  }
+
+  main{
+    height: 600px;
+  }
+
 }
