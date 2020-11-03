@@ -1,71 +1,76 @@
 //CSS ANIMATIONS------------------------------------------------------------------
-if(document.getElementsByClassName("planet-spec")[0].innerText.length == 0){
-    document.getElementsByClassName("planet-spec")[0].classList.add("lds-ring")
-}
-else if(document.getElementsByClassName("planet-spec")[0].innerText.length > 0){
-    document.getElementsByClassName("planet-spec")[0].classList.remove("lds-ring")
-}
+// if(document.getElementsByClassName("planet-spec")[0].innerText.length == 0){
+//     document.getElementsByClassName("planet-spec")[0].classList.add("lds-ring")
+// }
+// else if(document.getElementsByClassName("planet-spec")[0].innerText.length > 0){
+//     document.getElementsByClassName("planet-spec")[0].classList.remove("lds-ring")
+// }
 // -------------------------------------------------------------------------------------
 
 // GLOBALA VARIABLER------------------------------------------------------------
 let pageNum = 1 // Vi hämtar en character list från den första page som finns i API:n
-let nombreTest = "Luke Skywalker" //Global funktion som vi använder för att hitta char Index
-
-
 
 //GRUNDEN TILL ATT FÅ FRAM DATA FRÅN ETT API PÅ ETT ASYNCRONT SÄTT------------------
 async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot ett page-number variabel som parameter
     const req = await fetch (`https://swapi.dev/api/people/?page= + ${page}`) // här blir våran fetch dynamiskt beroende på vilken sida man vill fetcha
     const res = await req.json()
+    //currentFetch = await req.json()
     return res
 };
-var resultPromise = getStarWarsData(pageNum);
+//
 // -----------------------------------------------------------------------------------
 
 
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
 async function print() { //Skapar en funktion som enbart printar en lista på characters
+    document.querySelector(".loader-character").classList.remove("hidden")// visar preloader
+    document.querySelector(".character").classList.add("hidden")
     let result = await getStarWarsData(pageNum) // Sparar listan på ett variabel "result"
-
-    document.querySelector(".loader").classList.remove("hidden")
-
+    
     var a = document.getElementsByClassName("character")[0]
     a.innerHTML = "<ul>"
-
+    
     for(var i = 0; i < result.results.length; i++){
         a.innerHTML += "<li>" + result.results[i].name + "</li>"
         if(i % 2 == 0) {
             document.getElementsByTagName("li")[i].classList.add("bg-color")
         }
     }
-
-    document.querySelector(".loader").classList.add("hidden")
+    
     // Vi lägger till en eventlistener här:
-      let charInfo = document.querySelectorAll(".character li")
-         for (let i = 0; i < charInfo.length; i++) {
-             charInfo[i].addEventListener("click", function(){
-                 clickOnCharacter(charInfo[i].innerText)
-             })
-           }
+    let charInfo = document.querySelectorAll(".character li")
+    for (let i = 0; i < charInfo.length; i++) {
+        charInfo[i].addEventListener("click", function(){
+            clickOnCharacter(charInfo[i].innerText)
+        })
+    }
+    document.querySelector(".loader-character").classList.add("hidden") //döljer preloader
+    document.querySelector(".character").classList.remove("hidden")
 }
 print()
 
-//------------------------------------------------------------------------------------
+//------------------------------------------------------------------------
 async function getStarWarsPlanets(currentP) {
+    document.querySelector(".loader-planet-info").classList.remove("hidden")
+    document.querySelector(".planet-spec").classList.add("hidden")
+
     const req = await fetch (`${currentP}`)
     const planetJson = await req.json()
+    
+    document.querySelector(".loader-planet-info").classList.add("hidden")
+    document.querySelector(".planet-spec").classList.remove("hidden")
     return planetJson
 };
-let testPlanet = `http://swapi.dev/api/planets/1/`
-//getStarWarsPlanets(testPlanet)
-
 
 // PRINTAR INFORMATION OM EN CHARACTER------------------------------------
 async function clickOnCharacter(charName) {
+    //document.querySelector(".loader-planet-info").classList.remove("hidden")
     let currentPlanet = ""
+    document.querySelector(".loader-char-info").classList.remove("hidden")
+    document.querySelector(".character-spec").classList.add("hidden")
     
-    document.querySelector(".loader-right").classList.remove("hidden")//VISAR LOADING BAR
+    
     let charInfo = await getStarWarsData(pageNum)// väntar på info från API
     
     var b = document.getElementsByClassName("character-spec")[0]//Rensar rutan innan man printar nästa characters info
@@ -87,7 +92,7 @@ async function clickOnCharacter(charName) {
         }
     }
     let planetInfo = await getStarWarsPlanets(currentPlanet)
-
+    
     var c = document.getElementsByClassName("planet-spec")[0]
     c.innerHTML = ""
     for (let i = 0; i < charInfo.results.length; i++){
@@ -103,7 +108,10 @@ async function clickOnCharacter(charName) {
             c.innerHTML += "<p>" + "Terrain: " + planetInfo.terrain + "</p>"
         }
     }
-    document.querySelector(".loader-right").classList.add("hidden")//TAR BORT LOADING BAR
+    document.querySelector(".loader-char-info").classList.add("hidden")
+    document.querySelector(".character-spec").classList.remove("hidden")
+    //document.querySelector(".loader-planet-info").classList.add("hidden")
+    //slutar loader
 }
 
 
