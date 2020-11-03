@@ -58,7 +58,7 @@ main{
 
 .left,
 .right{
-  margin: -40px 5px;
+  margin: -40px 4%;
   height: 520px;
   width: 400px;
   background-color: lightgray;
@@ -308,4 +308,10 @@ p{
   .right p{
     font-size: 10px;
   }
+
+  .left,
+.right{
+  margin: -40px 5px;
+ 
+}
 }
