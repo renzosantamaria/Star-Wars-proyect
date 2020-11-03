@@ -77,6 +77,8 @@ border: none;
 background-color: lightgray;
 margin-left: 8px;
 margin-right: 14px;
+outline: none;
+box-shadow: none;
 }
 
 .buttons{
