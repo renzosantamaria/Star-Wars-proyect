@@ -64,7 +64,8 @@ let testPlanet = `http://swapi.dev/api/planets/1/`
 // PRINTAR INFORMATION OM EN CHARACTER------------------------------------
 async function clickOnCharacter(charName) {
     let currentPlanet = ""
-    document.querySelector(".loader-right").classList.remove("hidden")
+    
+    document.querySelector(".loader-right").classList.remove("hidden")//VISAR LOADING BAR
     let charInfo = await getStarWarsData(pageNum)// väntar på info från API
     
     var b = document.getElementsByClassName("character-spec")[0]//Rensar rutan innan man printar nästa characters info
@@ -91,8 +92,8 @@ async function clickOnCharacter(charName) {
     c.innerHTML = ""
     for (let i = 0; i < charInfo.results.length; i++){
         if (charName == charInfo.results[i].name) {
-            var c = document.getElementsByClassName("planet-spec")[0]
-            //När den hittar en match använder vi oss av dess index för att hämta resterande data
+            var c = document.getElementsByClassName("planet-spec")[0]//När den hittar en match använder vi oss av dess index för att hämta resterande data
+            
             c.innerHTML += "<p>" + planetInfo.name + "</p>"
             c.innerHTML += "<p>" + "Rotation period: " + planetInfo.rotation_period + "</p>"
             c.innerHTML += "<p>" + "Orbital period: " + planetInfo.orbital_period + "</p>"
@@ -102,50 +103,9 @@ async function clickOnCharacter(charName) {
             c.innerHTML += "<p>" + "Terrain: " + planetInfo.terrain + "</p>"
         }
     }
-
-    //console.log(planetInfo)
-    document.querySelector(".loader-right").classList.add("hidden")
-    console.log(planetInfo.name);
-    console.log("Rotation period: " + planetInfo.rotation_period);
-    console.log("Orbital period: " + planetInfo.orbital_period);
-    console.log("Diameter: " + planetInfo.diameter);
-    console.log("Climate: " + planetInfo.climate);
-    console.log("Gravity: " + planetInfo.gravity);
-    console.log("Terrain: " + planetInfo.terrain);
-
+    document.querySelector(".loader-right").classList.add("hidden")//TAR BORT LOADING BAR
 }
-// clickOnCharacter(nombreTest)
 
-// ----------------------------------------------------------------------------------
-// console.log(info)
-// console.log('got result', result.results);
-
-//GRUNDEN FÖR BEARBETNINGEN KOD FÖR PLANETER- RUTAN
-// console.log("Planet")
-// console.log(testvariable.homeworld.results[testvariable].name)
-//RESULTATEN ANGÅENDE PLANET
-//FETCHAR IFRÅN PLANET API'ET
-//BEHÖVS OM VI SKA HA KARAKTÄRERS HOMEWORLD
-async function getStarWarsPlanet() {
-    const reqplanet = await fetch ('https://swapi.dev/api/planets') //------> VI KAN FÅ URL FRÅN CHARACTER INFO, VI SPARAR DEN I ETT VARIABEL OCH SEN FETCHAR VARIABELN 
-    const resplanet = await reqplanet.json()
-    return resplanet
-};
-
-var homeworldPromise = getStarWarsPlanet();
-
-
-homeworldPromise.then(function(result) {
-    //LOOPAR IGENOM
-    for(var i = 0; i < result.results.length; i++) {
-        // console.log(result.results[i].name)
-    }
-});
-getStarWarsData()
-
-
-getStarWarsPlanet() //
-//homeworldPromise
 
 //--------------------- KNAPPAR PREVIOUS AND NEXT---------------------
 function nextPage() {
@@ -169,9 +129,3 @@ function nextPage() {
     print()
     document.querySelector("p .current-page").innerHTML = pageNum
 }
-
-
-
-
-
-
