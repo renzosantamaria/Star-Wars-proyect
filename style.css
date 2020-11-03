@@ -145,7 +145,7 @@ li:hover{
 }
 
 .character-spec,
-.planet.spec{
+.planet-spec{
   padding: 0 20px;
 }
 
@@ -155,7 +155,8 @@ p{
   font-weight: 600;
 }
 
-.character-spec p:nth-child(1){
+.character-spec p:nth-child(1),
+.planet-spec p:nth-child(1){
   font-size: 28px;
   padding: 10px 0px;
 }

@@ -38,8 +38,8 @@ async function print() { //Skapar en funktion som enbart printar en lista på ch
         if(i % 2 == 0) {
             document.getElementsByTagName("li")[i].classList.add("bg-color")
         }
-        document.getElementsByTagName("li")[i].classList.add("testAddClass")
     }
+
     document.querySelector(".loader").classList.add("hidden")
     // Vi lägger till en eventlistener här:
       let charInfo = document.querySelectorAll(".character li")
@@ -52,14 +52,22 @@ async function print() { //Skapar en funktion som enbart printar en lista på ch
 print()
 
 //------------------------------------------------------------------------------------
+async function getStarWarsPlanets(currentP) {
+    const req = await fetch (`${currentP}`)
+    const planetJson = await req.json()
+    return planetJson
+};
+let testPlanet = `http://swapi.dev/api/planets/1/`
+//getStarWarsPlanets(testPlanet)
 
 
 // PRINTAR INFORMATION OM EN CHARACTER------------------------------------
 async function clickOnCharacter(charName) {
+    let currentPlanet = ""
     document.querySelector(".loader-right").classList.remove("hidden")
     let charInfo = await getStarWarsData(pageNum)// väntar på info från API
-
-    var b = document.getElementsByClassName("character-spec")[0]
+    
+    var b = document.getElementsByClassName("character-spec")[0]//Rensar rutan innan man printar nästa characters info
     b.innerHTML = ""
     
     for (let i = 0; i < charInfo.results.length; i++){//loopar igenom hela character listan 
@@ -74,46 +82,67 @@ async function clickOnCharacter(charName) {
             b.innerHTML += "<p>" + "Eye color: " + charInfo.results[i].eye_color + "</p>"
             b.innerHTML += "<p>" + "Birth_year: " + charInfo.results[i].birth_year + "</p>"
             b.innerHTML += "<p>" + "Gender: " + charInfo.results[i].gender + "</p>"
+            currentPlanet = charInfo.results[i].homeworld
         }
     }
+    let planetInfo = await getStarWarsPlanets(currentPlanet)
+
+    var c = document.getElementsByClassName("planet-spec")[0]
+    c.innerHTML = ""
+    for (let i = 0; i < charInfo.results.length; i++){
+        if (charName == charInfo.results[i].name) {
+            var c = document.getElementsByClassName("planet-spec")[0]
+            //När den hittar en match använder vi oss av dess index för att hämta resterande data
+            c.innerHTML += "<p>" + planetInfo.name + "</p>"
+            c.innerHTML += "<p>" + "Rotation period: " + planetInfo.rotation_period + "</p>"
+            c.innerHTML += "<p>" + "Orbital period: " + planetInfo.orbital_period + "</p>"
+            c.innerHTML += "<p>" + "Diameter: " + planetInfo.diameter + "</p>"
+            c.innerHTML += "<p>" + "Climate: " + planetInfo.climate + "</p>"
+            c.innerHTML += "<p>" + "Gravity: " + planetInfo.gravity + "</p>"
+            c.innerHTML += "<p>" + "Terrain: " + planetInfo.terrain + "</p>"
+        }
+    }
+
+    //console.log(planetInfo)
     document.querySelector(".loader-right").classList.add("hidden")
+    console.log(planetInfo.name);
+    console.log("Rotation period: " + planetInfo.rotation_period);
+    console.log("Orbital period: " + planetInfo.orbital_period);
+    console.log("Diameter: " + planetInfo.diameter);
+    console.log("Climate: " + planetInfo.climate);
+    console.log("Gravity: " + planetInfo.gravity);
+    console.log("Terrain: " + planetInfo.terrain);
+
 }
 // clickOnCharacter(nombreTest)
 
 // ----------------------------------------------------------------------------------
+// console.log(info)
+// console.log('got result', result.results);
 
-
-        // console.log(info)
-    // console.log('got result', result.results);
-
-    //GRUNDEN FÖR BEARBETNINGEN KOD FÖR PLANETER- RUTAN
-    // console.log("Planet")
-    // console.log(testvariable.homeworld.results[testvariable].name)
-
-
+//GRUNDEN FÖR BEARBETNINGEN KOD FÖR PLANETER- RUTAN
+// console.log("Planet")
+// console.log(testvariable.homeworld.results[testvariable].name)
 //RESULTATEN ANGÅENDE PLANET
 //FETCHAR IFRÅN PLANET API'ET
 //BEHÖVS OM VI SKA HA KARAKTÄRERS HOMEWORLD
 async function getStarWarsPlanet() {
-    const reqplanet = await fetch ('https://swapi.dev/api/planets')
+    const reqplanet = await fetch ('https://swapi.dev/api/planets') //------> VI KAN FÅ URL FRÅN CHARACTER INFO, VI SPARAR DEN I ETT VARIABEL OCH SEN FETCHAR VARIABELN 
     const resplanet = await reqplanet.json()
-
     return resplanet
 };
 
 var homeworldPromise = getStarWarsPlanet();
 
-homeworldPromise.then(function(result) {
 
+homeworldPromise.then(function(result) {
     //LOOPAR IGENOM
     for(var i = 0; i < result.results.length; i++) {
         // console.log(result.results[i].name)
     }
-
 });
-
 getStarWarsData()
-//resultPromise
+
 
 getStarWarsPlanet() //
 //homeworldPromise
@@ -122,27 +151,27 @@ getStarWarsPlanet() //
 function nextPage() {
     if (pageNum < 9) {
         pageNum++
-    }else{
-        pageNum = 1 // När man kommer till sista sidan kommer den att returnera dig till första
+    }else{  // När man kommer till sista sidan kommer den att returnera dig till första
+        pageNum = 1 
     }
     getStarWarsData(pageNum)
     print()
     document.querySelector("p .current-page").innerHTML = pageNum
  }
         
-
  function previousPage() {
     if (pageNum > 1) {
-        pageNum-- // När man inte kan backa mer kommer den att skicka dig till sista sidan
-    }else{
+        pageNum-- 
+    }else{// När man inte kan backa mer kommer den att skicka dig till sista sidan
         pageNum = 9
     }
     getStarWarsData(pageNum)
     print()
     document.querySelector("p .current-page").innerHTML = pageNum
-
 }
-// EVENT LISTENER-------------------------------------------------
+
+
+
 
 
 
