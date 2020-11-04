@@ -61,7 +61,7 @@ async function clickOnCharacter(charName) {
 
     document.querySelector(".lsd-ring-char-info").classList.remove("hidden")
     document.querySelector(".character-spec").classList.add("hidden")
-    
+
     document.querySelector(".Planet").style.background = "rgba(142, 142, 142, 1)"
     document.querySelector(".Species").style.background = "rgba(235, 235, 235, 1)"
     document.querySelector(".Vehicles").style.background = "rgba(235, 235, 235, 1)"
@@ -82,7 +82,7 @@ async function clickOnCharacter(charName) {
             b.innerHTML += "<p>" + "Hair color: " + charInfo.results[i].hair_color + "</p>"
             b.innerHTML += "<p>" + "Skin color: " + charInfo.results[i].skin_color + "</p>"
             b.innerHTML += "<p>" + "Eye color: " + charInfo.results[i].eye_color + "</p>"
-            b.innerHTML += "<p>" + "Birth_year: " + charInfo.results[i].birth_year + "</p>"
+            b.innerHTML += "<p>" + "Birth year: " + charInfo.results[i].birth_year + "</p>"
             b.innerHTML += "<p>" + "Gender: " + charInfo.results[i].gender + "</p>"
             currentPlanet = charInfo.results[i].homeworld
         }
