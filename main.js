@@ -11,7 +11,7 @@ async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot 
 // -----------------------------------------------------------------------------------
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
-async function print() { //Skapar en funktion som enbart printar en lista på characters
+async function print() { //Skapar en funktion som printar en lista på characters
     document.querySelector(".loader-character").classList.remove("hidden")// visar preloader
     document.querySelector(".character").classList.add("hidden")
     let result = await getStarWarsData(pageNum) // Sparar listan på ett variabel "result"
