@@ -44,7 +44,7 @@ async function getStarWarsPlanets(currentP) {
     document.querySelector(".planet-spec").classList.add("hidden")
 
     //const req = await fetch (`${currentP}`)
-    const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP} + /`)
+    const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP}`)
     const planetJson = await req.json()
     
     document.querySelector(".loader-planet-info").classList.add("hidden")
@@ -84,10 +84,10 @@ async function clickOnCharacter(charName) {
     
     for (let i = 0; i < currentPlanet.length; i++) {
         if (currentPlanet.length == 31) {
-            planetId = currentPlanet[currentPlanet.length - 2]
+            planetId = currentPlanet[currentPlanet.length - 2] + "/"
         }
         else{
-            planetId = currentPlanet[currentPlanet.length - 3] + currentPlanet[currentPlanet.length - 2]
+            planetId = currentPlanet[currentPlanet.length - 3] + currentPlanet[currentPlanet.length - 2] + "/"
         }
             
         console.log(planetId)
