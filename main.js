@@ -44,7 +44,7 @@ async function getStarWarsPlanets(currentP) {
     document.querySelector(".planet-spec").classList.add("hidden")
 
     //const req = await fetch (`${currentP}`)
-    const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP}`)
+    const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP} + /`)
     const planetJson = await req.json()
     
     document.querySelector(".loader-planet-info").classList.add("hidden")
