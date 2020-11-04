@@ -1,12 +1,3 @@
-//CSS ANIMATIONS------------------------------------------------------------------
-// if(document.getElementsByClassName("planet-spec")[0].innerText.length == 0){
-//     document.getElementsByClassName("planet-spec")[0].classList.add("lds-ring")
-// }
-// else if(document.getElementsByClassName("planet-spec")[0].innerText.length > 0){
-//     document.getElementsByClassName("planet-spec")[0].classList.remove("lds-ring")
-// }
-// -------------------------------------------------------------------------------------
-
 // GLOBALA VARIABLER------------------------------------------------------------
 let pageNum = 1 // Vi hämtar en character list från den första page som finns i API:n
 
@@ -17,10 +8,7 @@ async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot 
     //currentFetch = await req.json()
     return res
 };
-//
 // -----------------------------------------------------------------------------------
-
-
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
 async function print() { //Skapar en funktion som enbart printar en lista på characters
@@ -65,7 +53,6 @@ async function getStarWarsPlanets(currentP) {
 
 // PRINTAR INFORMATION OM EN CHARACTER------------------------------------
 async function clickOnCharacter(charName) {
-    //document.querySelector(".loader-planet-info").classList.remove("hidden")
     let currentPlanet = ""
     document.querySelector(".loader-char-info").classList.remove("hidden")
     document.querySelector(".character-spec").classList.add("hidden")
@@ -110,10 +97,7 @@ async function clickOnCharacter(charName) {
     }
     document.querySelector(".loader-char-info").classList.add("hidden")
     document.querySelector(".character-spec").classList.remove("hidden")
-    //document.querySelector(".loader-planet-info").classList.add("hidden")
-    //slutar loader
 }
-
 
 //--------------------- KNAPPAR PREVIOUS AND NEXT---------------------
 function nextPage() {
