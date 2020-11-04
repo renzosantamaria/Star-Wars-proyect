@@ -5,10 +5,8 @@ let pageNum = 1 // Vi hämtar en character list från den första page som finns
 async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot ett page-number variabel som parameter
     const req = await fetch (`https://swapi.dev/api/people/?page= + ${page}`) // här blir våran fetch dynamiskt beroende på vilken sida man vill fetcha
     const res = await req.json()
-    //currentFetch = await req.json()
     return res
 };
-// -----------------------------------------------------------------------------------
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
 async function print() { //Skapar en funktion som printar en lista på characters
@@ -38,12 +36,11 @@ async function print() { //Skapar en funktion som printar en lista på character
 }
 print()
 
-//------------------------------------------------------------------------
+//---------------------HÄMTAR PLANETENS DATA-----------------------------------------
 async function getStarWarsPlanets(currentP) {
     document.querySelector(".loader-planet-info").classList.remove("hidden")
     document.querySelector(".planet-spec").classList.add("hidden")
 
-    //const req = await fetch (`${currentP}`)
     const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP}`)
     const planetJson = await req.json()
     
