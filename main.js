@@ -1,6 +1,9 @@
 // GLOBALA VARIABLER------------------------------------------------------------
 let pageNum = 1 // Vi hämtar en character list från den första page som finns i API:n
 
+//`http://swapi.dev/api/planets/` + //ETT VARIABEL MED DE SISTA 2 BOKSTÄVER
+//SKA IMPLEMENTERAS I LINJE 49!
+
 //GRUNDEN TILL ATT FÅ FRAM DATA FRÅN ETT API PÅ ETT ASYNCRONT SÄTT------------------
 async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot ett page-number variabel som parameter
     const req = await fetch (`http://swapi.dev/api/people/?page= + ${page}`) // här blir våran fetch dynamiskt beroende på vilken sida man vill fetcha
@@ -43,7 +46,8 @@ async function getStarWarsPlanets(currentP) {
     document.querySelector(".loader-planet-info").classList.remove("hidden")
     document.querySelector(".planet-spec").classList.add("hidden")
 
-    const req = await fetch (`${currentP}`)
+    //const req = await fetch (`${currentP}`)
+    const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP}`)
     const planetJson = await req.json()
     
     document.querySelector(".loader-planet-info").classList.add("hidden")
@@ -54,6 +58,7 @@ async function getStarWarsPlanets(currentP) {
 // PRINTAR INFORMATION OM EN CHARACTER------------------------------------
 async function clickOnCharacter(charName) {
     let currentPlanet = ""
+    let planetId;
     document.querySelector(".loader-char-info").classList.remove("hidden")
     document.querySelector(".character-spec").classList.add("hidden")
     
@@ -78,7 +83,20 @@ async function clickOnCharacter(charName) {
             currentPlanet = charInfo.results[i].homeworld
         }
     }
-    let planetInfo = await getStarWarsPlanets(currentPlanet)
+    console.log(currentPlanet)
+    
+    for (let i = 0; i < currentPlanet.length; i++) {
+        if (currentPlanet.length == 31) {
+            planetId = currentPlanet[currentPlanet.length - 2]
+        }
+        else{
+            planetId = currentPlanet[currentPlanet.length - 3] + currentPlanet[currentPlanet.length - 2]
+        }
+            
+        console.log(planetId)
+    }
+
+    let planetInfo = await getStarWarsPlanets(planetId)
     
     var c = document.getElementsByClassName("planet-spec")[0]
     c.innerHTML = ""
