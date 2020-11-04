@@ -121,6 +121,7 @@ letter-spacing: 6px;
 .planet-spec{
   background-color: rgba(142, 142, 142, 1);
   color: white;
+  margin-top: 1px;
 }
 
 
@@ -140,6 +141,9 @@ li:hover{
   color: white;
   cursor: pointer;
 }
+.character li:hover::after{
+  content: "▸";
+} 
 
 .bg-color{
   background-color: rgba(142, 142, 142, 1);
