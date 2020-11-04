@@ -10,7 +10,9 @@ async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot 
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
 async function print() { //Skapar en funktion som printar en lista på characters 
-    document.querySelector(".planet").classList.add("darker-color-btn")
+    document.querySelector(".Planet").classList.add("darker-color-btn")
+    // document.querySelector(".Planet").style.background = "rgba(142, 142, 142, 1)"
+    
 
     document.querySelector(".characters-list-wrapper").classList.remove("hidden")// visar preloader --> Här kan man ändra olika preloaders
     document.querySelector(".character").classList.add("hidden")
@@ -59,6 +61,11 @@ async function clickOnCharacter(charName) {
 
     document.querySelector(".lsd-ring-char-info").classList.remove("hidden")
     document.querySelector(".character-spec").classList.add("hidden")
+    
+    document.querySelector(".Planet").style.background = "rgba(142, 142, 142, 1)"
+    document.querySelector(".Species").style.background = "rgba(235, 235, 235, 1)"
+    document.querySelector(".Vehicles").style.background = "rgba(235, 235, 235, 1)"
+    document.querySelector(".Starships").style.background = "rgba(235, 235, 235, 1)"
     
     let charInfo = await getStarWarsData(pageNum)// väntar på info från API
     
@@ -133,4 +140,20 @@ function nextPage() {
     getStarWarsData(pageNum)
     print()
     document.querySelector("p .current-page").innerHTML = pageNum
+}
+
+let btnListener = document.querySelectorAll(".extra-info-buttons")
+for (let i = 0; i < btnListener.length; i++) {
+
+    btnListener[i].addEventListener("click", function(){
+        
+        document.querySelector(".Planet").style.background = "rgba(235, 235, 235, 1)"
+        document.querySelector(".Species").style.background = "rgba(235, 235, 235, 1)"
+        document.querySelector(".Vehicles").style.background = "rgba(235, 235, 235, 1)"
+        document.querySelector(".Starships").style.background = "rgba(235, 235, 235, 1)"
+
+        let currentClass = `.${btnListener[i].innerHTML}`
+        document.querySelector(currentClass).style.background = "rgba(142, 142, 142, 1)" 
+        
+    })
 }

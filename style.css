@@ -258,8 +258,16 @@ p{
   border-top-left-radius: 4px;
 }
 
+.extra-info-buttons:hover{
+  cursor: pointer;
+}
+
 .darker-color-btn{
   background-color: rgba(142, 142, 142, 1);
+}
+
+.back-to-default-color{
+  background-color: pink;
 }
 
 /* RESPONSIVE------------------------------------ */
