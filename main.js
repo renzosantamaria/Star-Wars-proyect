@@ -10,7 +10,6 @@ async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot 
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
 async function print() { //Skapar en funktion som printar en lista på characters 
-    // document.querySelector(".loader-character").classList.remove("hidden")
     document.querySelector(".characters-list-wrapper").classList.remove("hidden")// visar preloader --> Här kan man ändra olika preloaders
     document.querySelector(".character").classList.add("hidden")
     let result = await getStarWarsData(pageNum) // Sparar listan på ett variabel "result"
@@ -32,8 +31,6 @@ async function print() { //Skapar en funktion som printar en lista på character
             clickOnCharacter(charInfo[i].innerText)
         })
     }
-    // document.querySelector(".loader-character").classList.add("hidden")
-    
     document.querySelector(".characters-list-wrapper").classList.add("hidden") //döljer preloader
     document.querySelector(".character").classList.remove("hidden")
 }
@@ -41,14 +38,13 @@ print()
 
 //---------------------HÄMTAR PLANETENS DATA-----------------------------------------
 async function getStarWarsPlanets(currentP) {
-    // document.querySelector(".loader-planet-info").classList.remove("hidden")
+
     document.querySelector(".lsd-ring-planet-info").classList.remove("hidden")
     document.querySelector(".planet-spec").classList.add("hidden")
 
     const req = await fetch (`https://swapi.dev/api/planets/ + ${currentP}`)
     const planetJson = await req.json()
     
-    // document.querySelector(".loader-planet-info").classList.add("hidden")
     document.querySelector(".lsd-ring-planet-info").classList.add("hidden")
     document.querySelector(".planet-spec").classList.remove("hidden")
     return planetJson
@@ -58,10 +54,9 @@ async function getStarWarsPlanets(currentP) {
 async function clickOnCharacter(charName) {
     let currentPlanet = ""
     let planetId;
-    // document.querySelector(".loader-char-info").classList.remove("hidden")
+
     document.querySelector(".lsd-ring-char-info").classList.remove("hidden")
     document.querySelector(".character-spec").classList.add("hidden")
-    
     
     let charInfo = await getStarWarsData(pageNum)// väntar på info från API
     
@@ -110,7 +105,7 @@ async function clickOnCharacter(charName) {
             c.innerHTML += "<p>" + "Terrain: " + planetInfo.terrain + "</p>"
         }
     }
-    // document.querySelector(".loader-char-info").classList.add("hidden")
+
     document.querySelector(".lsd-ring-char-info").classList.add("hidden")
     document.querySelector(".character-spec").classList.remove("hidden")
 }
