@@ -10,6 +10,8 @@ async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot 
 
 //------------------------------------FUNKTION SOM PRINTAR ALLA CHARACTERS!!!---------
 async function print() { //Skapar en funktion som printar en lista på characters 
+    document.querySelector(".planet").classList.add("darker-color-btn")
+
     document.querySelector(".characters-list-wrapper").classList.remove("hidden")// visar preloader --> Här kan man ändra olika preloaders
     document.querySelector(".character").classList.add("hidden")
     let result = await getStarWarsData(pageNum) // Sparar listan på ett variabel "result"
