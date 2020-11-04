@@ -80,8 +80,7 @@ async function clickOnCharacter(charName) {
             currentPlanet = charInfo.results[i].homeworld
         }
     }
-    console.log(currentPlanet)
-    
+        
     for (let i = 0; i < currentPlanet.length; i++) {
         if (currentPlanet.length == 31) {
             planetId = currentPlanet[currentPlanet.length - 2] + "/"
@@ -89,8 +88,6 @@ async function clickOnCharacter(charName) {
         else{
             planetId = currentPlanet[currentPlanet.length - 3] + currentPlanet[currentPlanet.length - 2] + "/"
         }
-            
-        console.log(planetId)
     }
 
     let planetInfo = await getStarWarsPlanets(planetId)
