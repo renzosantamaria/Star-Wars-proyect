@@ -1,9 +1,6 @@
 // GLOBALA VARIABLER------------------------------------------------------------
 let pageNum = 1 // Vi hämtar en character list från den första page som finns i API:n
 
-//`http://swapi.dev/api/planets/` + //ETT VARIABEL MED DE SISTA 2 BOKSTÄVER
-//SKA IMPLEMENTERAS I LINJE 49!
-
 //GRUNDEN TILL ATT FÅ FRAM DATA FRÅN ETT API PÅ ETT ASYNCRONT SÄTT------------------
 async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot ett page-number variabel som parameter
     const req = await fetch (`https://swapi.dev/api/people/?page= + ${page}`) // här blir våran fetch dynamiskt beroende på vilken sida man vill fetcha
