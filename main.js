@@ -1,5 +1,7 @@
 // GLOBALA VARIABLER------------------------------------------------------------
 let pageNum = 1 // Vi hämtar en character list från den första page som finns i API:n
+// let vehicleId;
+// console.log(vehicleId)
 
 //GRUNDEN TILL ATT FÅ FRAM DATA FRÅN ETT API PÅ ETT ASYNCRONT SÄTT------------------
 async function getStarWarsData(page) {//Gjorde om så att funktionerna tar emot ett page-number variabel som parameter
@@ -17,6 +19,7 @@ async function print() { //Skapar en funktion som printar en lista på character
     document.querySelector(".characters-list-wrapper").classList.remove("hidden")// visar preloader --> Här kan man ändra olika preloaders
     document.querySelector(".character").classList.add("hidden")
     let result = await getStarWarsData(pageNum) // Sparar listan på ett variabel "result"
+    // console.log(result.results[0].vehicles[0])
     
     var a = document.getElementsByClassName("character")[0]
     a.innerHTML = "<ul>"
@@ -54,10 +57,21 @@ async function getStarWarsPlanets(currentP) {
     return planetJson
 };
 
+//---------------------HÄMTAR VEHICLES DATA-----------------------------------
+
+// async function getStarWarsVehicles(currentV){
+
+//     const req = await fetch (`https://swapi.dev/api/vehicles/ + ${currentV}`)
+//     const vehicleJson = await req.json()
+//     return vehicleJson
+//}
+
 // PRINTAR INFORMATION OM EN CHARACTER------------------------------------
 async function clickOnCharacter(charName) {
     let currentPlanet = ""
-    let planetId;
+    let currentVehicle;
+    // let planetId;
+    
 
     document.querySelector(".lsd-ring-char-info").classList.remove("hidden")
     document.querySelector(".character-spec").classList.add("hidden")
@@ -85,6 +99,9 @@ async function clickOnCharacter(charName) {
             b.innerHTML += "<p>" + "Birth year: " + charInfo.results[i].birth_year + "</p>"
             b.innerHTML += "<p>" + "Gender: " + charInfo.results[i].gender + "</p>"
             currentPlanet = charInfo.results[i].homeworld
+            // currentVehicle = charInfo.results[i].vehicles[0]
+            // console.log(currentVehicle)
+
         }
     }
         
@@ -96,7 +113,7 @@ async function clickOnCharacter(charName) {
             planetId = currentPlanet[currentPlanet.length - 3] + currentPlanet[currentPlanet.length - 2] + "/"
         }
     }
-
+    // PRINTAR PLANETENS INFORMATION----------------------------
     let planetInfo = await getStarWarsPlanets(planetId)
     
     var c = document.getElementsByClassName("planet-spec")[0]
@@ -114,11 +131,39 @@ async function clickOnCharacter(charName) {
             c.innerHTML += "<p>" + "Terrain: " + planetInfo.terrain + "</p>"
         }
     }
+    // -------------------------------------------------------------
+
+       
+    // vehicleId = currentVehicle[currentVehicle.length - 3] + currentVehicle[currentVehicle.length - 2] + "/"
+    // console.log(vehicleId)
+      
 
     document.querySelector(".lsd-ring-char-info").classList.add("hidden")
     document.querySelector(".character-spec").classList.remove("hidden")
+    // return vehicleId
 }
 
+// async function printVehicles() {
+//     let vehicleInfo = await clickOnCharacter()
+//     console.log(vehicleInfo)
+//     var d = document.getElementsByClassName("planet-spec")[0]
+//     d.innerHTML = ""
+//     for (let i = 0; i < charInfo.results.length; i++){
+//         if (charName == charInfo.results[i].name) {
+//             var c = document.getElementsByClassName("planet-spec")[0]//När den hittar en match använder vi oss av dess index för att hämta resterande data
+            
+            // c.innerHTML += "<p>" + vehicleInfo.name + "</p>"
+            // c.innerHTML += "<p>" + "Rotation period: " + vehicleInfo.rotation_period + "</p>"
+            // c.innerHTML += "<p>" + "Orbital period: " + vehicleInfo.orbital_period + "</p>"
+            // c.innerHTML += "<p>" + "Diameter: " + vehicleInfo.diameter + "</p>"
+            // c.innerHTML += "<p>" + "Climate: " + vehicleInfo.climate + "</p>"
+            // c.innerHTML += "<p>" + "Gravity: " + vehicleInfo.gravity + "</p>"
+            // c.innerHTML += "<p>" + "Terrain: " + vehicleInfo.terrain + "</p>"
+//         }
+//     }
+// }
+
+// printVehicles()
 //--------------------- KNAPPAR PREVIOUS AND NEXT---------------------
 function nextPage() {
     if (pageNum < 9) {
